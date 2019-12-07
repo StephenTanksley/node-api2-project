@@ -1,4 +1,5 @@
 const express = require('express')
+const api = require('./welcome')
 
 const router = express.Router({
   //allows params from the parent router to get passed to the child router.
