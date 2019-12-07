@@ -1,9 +1,12 @@
 const express = require('express')
-const router = express.Router()
+
+const router = express.Router({
+  //allows params from the parent router to get passed to the child router.
+  mergeParams: true,
+})
   
-  router.get("/api/posts/", (req, res) => {
-      console.log(req.params)
-    // res.json({ message: "Welcome to the Hubs API" })
+  router.get('/posts', (req, res) => {
+    res.send({ "<h2>Welcome to the Posts endpoint</h2>" })
   })
 
 module.exports = router
