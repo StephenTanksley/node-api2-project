@@ -4,8 +4,8 @@ const express = require('express')
 const router = express.Router({mergeParams: true})
 let db = require('../data/db')
 
-router.get('/comments', (req, res) => {
-    console.log(req.params)
+router.get('/', (req, res) => {
+    res.json({ message: "Welcome to the comments section. "})
 })
 
 module.exports = router
