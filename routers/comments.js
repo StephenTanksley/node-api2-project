@@ -16,7 +16,7 @@ router.post('/', async (req, res) => {
                 .json({errorMessage: "Please provide text for the comment."})
     }
     
-    try{
+    try {
         const newComment = { text: req.body.text }
         const commentID = await db.insertComment(newComment)
         const postedComment = await db.findCommentById(commentID)
@@ -45,20 +45,22 @@ router.get('/', async (req, res) => {
             .json(postComments)
     }
     catch (error) {
-        res.status(500).json({errorMessage: "The comment could not be retrieved."})
+        res
+            .status(500)
+            .json({errorMessage: "The comment could not be retrieved."})
     }
 })
 
 
 //a comment by ID
 router.get('/:commentId', async (req, res) => {
-    if(!req.params.id || req.params.commentId){
+    if(!req.params.id){
         return res
                 .status(404)
                 .json({errorMessage: "The post or comment with the specified ID does not exist."})
     }
     try {
-        const retrievedComment = await db.findCommentById(req.params.commentId)
+        const retrievedComment = await db.findCommentById(req.params.id)
         res
             .status(200)
             .json(retrievedComment)

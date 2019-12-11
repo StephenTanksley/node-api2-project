@@ -10,7 +10,6 @@ const router = express.Router()
 
 router.use("/:id/comments", commentRoute)
 
-
 //C of CRUD - CREATE
 router.post('/', async (req, res) => {
   if (!req.body.title || !req.body.contents) {
@@ -39,17 +38,17 @@ router.post('/', async (req, res) => {
 
 //R of CRUD - READ. We're getting the full list of posts here.
 router.get('/', async (req, res) => {
-try {
-  const payload = await db.find()
-  res
-    .json(payload)
-} catch (error) {
-  res
-    .status(500)
-    .json({
-      error: "The posts information could not be retrieved."
-    })
-}
+  try {
+    const payload = await db.find()
+    res
+      .json(payload)
+  } catch (error) {
+    res
+      .status(500)
+      .json({
+        error: "The posts information could not be retrieved."
+      })
+  }
 })
 
 //R of CRUD - READ:ID. This time, we're getting only a specific post.
